@@ -1,0 +1,19 @@
+﻿<Properties StartupConfiguration="{144EF453-FCD8-9E01-B298-9429D968D010}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Map.cs">
+    <Files>
+      <File FileName="Assets/scripts/MinHeap.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Map.cs" Line="81" Column="2" />
+      <File FileName="Assets/scripts/PathfindingSequentialA.cs" Line="9" Column="37" />
+      <File FileName="Assets/scripts/Node.cs" Line="87" Column="32" />
+      <File FileName="Assets/scripts/Enums.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/NodeVisualization.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
