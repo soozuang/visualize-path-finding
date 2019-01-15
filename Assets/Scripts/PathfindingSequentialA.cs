@@ -34,7 +34,6 @@ public class PathfindingSequentialA
 	{
 		ThreadStart startT = new ThreadStart(Astar);
 		thread = new Thread(startT);
-		//thread.Priority = ThreadPriority.Highest;
 		thread.Start();
 	}
 
@@ -119,13 +118,11 @@ public class PathfindingSequentialA
 		{
 			if(goBack)
 			{
-				if(numSteps == goBackToStep)
-				{
+                if(numSteps == goBackToStep)
 					goBack = false;
-				}
 				break;
 			}
-			else if(Map.map.StepBack )
+			if(Map.map.StepBack )
 			{
 				current.isCurrent = false;
 				Map.map.StepBack = false;
