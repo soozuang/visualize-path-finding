@@ -56,18 +56,15 @@ public class Map : MonoBehaviour
 	public int datGap;
 	public int numDoors;
 
-	private bool moveBack;
+	private readonly bool moveBack;
 	public Node selectedNode;
 
-	// A*
 	public List<Node> sequentialAPath;
 	private LineRenderer lineRenderer;
 	PathfindingSequentialA sequentialA;
 
-	
-//	private Stopwatch stopWatch = new Stopwatch();
 
-	// Grid/Node
+	/* Set the map's metrics */
 	public int size_x;
 	public int size_z;
 	private Vector2 nodeSize;
@@ -110,7 +107,7 @@ public class Map : MonoBehaviour
 
 		InitMap();
 		
-		StartCoroutine(makeVisuals());
+		StartCoroutine(MakeVisualize());
 
 		if (RunSequentialAStar)
 			StartCoroutine (RunSequentialA ());
@@ -142,10 +139,6 @@ public class Map : MonoBehaviour
 			spawnNode.isWalkable = true;
 
 			sequentialA = new PathfindingSequentialA(spawnNode, destinationNode);
-			//bidirectionalStart = new PathfindingBidirectionalA(spawnNode, destinationNode);
-			//bidirectionalGoal = new PathfindingBidirectionalA(destinationNode, spawnNode);
-			//bidirectionalStart.brotherThread = bidirectionalGoal;
-			//bidirectionalGoal.brotherThread = bidirectionalStart;
 
 			Repeat = true;
 		}
@@ -170,11 +163,11 @@ public class Map : MonoBehaviour
 		{
 			yield return new WaitForSeconds(.00001f);
 		}
-		DrawPath( sequentialA.pathToDestination, lineRenderer);
+		DrawPath(sequentialA.pathToDestination, lineRenderer);
 
 	}
 
-	IEnumerator makeVisuals()
+	IEnumerator MakeVisualize()
 	{
 		int count = 0;
 		foreach (Node node in nodes) {
@@ -206,7 +199,7 @@ public class Map : MonoBehaviour
 			nodes[a,randZ].isWalkable = false;
 		}
 
-		// make openings in the walls. one opening in each section off wall for every loop
+		// Make openings in the walls. one opening in each section off wall for every loop
 		for (int a = 0; a<numDoors ; a++){
 			nodes[randX, UnityEngine.Random.Range(zsmall, randZ)].isWalkable = true;
 			nodes[randX, UnityEngine.Random.Range(randZ+1, zbig)].isWalkable = true;
@@ -220,9 +213,6 @@ public class Map : MonoBehaviour
 
 		MakeWalls(randX + 1, xbig, randZ, zbig);
 		MakeWalls(randX + 1, xbig, zsmall, randZ - 1);
-
-
-
 	}
 
 	public void ClearMap(){
@@ -250,11 +240,11 @@ public class Map : MonoBehaviour
 
 		if(path == null)
 		{
-			lineRenderer.SetVertexCount(0);
+            lineRenderer.positionCount = 0;
 			return;
 		}
 
-		lineRenderer.SetVertexCount(path.Count);
+        lineRenderer.positionCount = path.Count;
 		for (int x=path.Count-1; x>=0; x--)
 		{
 			if(path[x] != null)
@@ -303,7 +293,7 @@ public class Map : MonoBehaviour
 
 	public void InitMap()
 	{
-		// initialize pathfinding variables
+		// Initialize pathfinding variables
 		foreach (Node node in nodes) {
 			node.gScore = int.MaxValue;
 			node.fScore = int.MaxValue;

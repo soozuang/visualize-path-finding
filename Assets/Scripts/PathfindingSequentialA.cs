@@ -10,7 +10,7 @@ public class PathfindingSequentialA
 	public Thread thread;
 	public bool done = false;
 
-	//Tracing
+	// Tracing
 	int goBackToStep;
 	private int GoBackToStep
 	{
@@ -37,62 +37,52 @@ public class PathfindingSequentialA
 		thread.Start();
 	}
 
-	public void Astar ()
+	public void Astar()
 	{
-		if (start == null || goal == null){
+		if (start == null || goal == null || start == goal)
+        {
 			done = true;
 			return;
 		}
-		
-		if (start == goal)
-		{
-			done = true;
-			return;
-		}
-
 		MinHeap openSet = new MinHeap(start);
 		start.isInOpenSet = true;
-		
 		start.gScore = 0;
-		start.fScore = start.gScore + Heuristic_cost_estimate (goal, start);
-		
+		start.fScore = start.gScore + HeuristicCost (goal, start);
+
 		int numSteps = 0;
 		Node current = null;
-		while (openSet.Count() > 0) {
-
-			current = openSet.GetRoot ();
-
+		while (openSet.Count() > 0) 
+        {
+			current = openSet.GetRoot();
 			current.isCurrent = true;
 			current.isInOpenSet = false;
 			current.isInClosedSet = true;
-
 			ControlLogic(current, numSteps);
 			numSteps++;
 			current.isCurrent = false;
 
-
 			if (current == goal)
 			{
-				pathToDestination = Reconstruct_path (start, goal);
+				pathToDestination = ConstructPath(start, goal);
 				done = true;
 				return;
 			}
 
-			foreach (Node neighbor in current.getNeighbors()) {
-				if(neighbor == null || !neighbor.isWalkable || neighbor.isInClosedSet)
+			foreach (Node neighbor in current.GetNeighbors())
+            { 
+                if (neighbor == null || !neighbor.isWalkable || neighbor.isInClosedSet)
 					continue;
-				
 				// if the new gscore is lower replace it
-				int tentativeGscore = current.gScore + Heuristic_cost_estimate (current, neighbor);
+				int tentativeGscore = current.gScore + HeuristicCost(current, neighbor);
 				
 				if (!neighbor.isInOpenSet || tentativeGscore < neighbor.gScore) {
 					
 					neighbor.parent = current;
 					neighbor.gScore = tentativeGscore;
-					neighbor.fScore = neighbor.gScore + Heuristic_cost_estimate (goal, neighbor);
+					neighbor.fScore = neighbor.gScore + HeuristicCost(goal, neighbor);
 					
 					if (!neighbor.isInOpenSet){
-						openSet.Add (neighbor);
+						openSet.Add(neighbor);
 						neighbor.isInOpenSet = true;
 					}
 					else
@@ -110,9 +100,9 @@ public class PathfindingSequentialA
 
 	private void ControlLogic(Node current, int numSteps)
 	{
-		if(Map.map.TraceThroughOn && Map.map.ContinueToSelectedNode && current == Map.map.selectedNode){
+		if(Map.map.TraceThroughOn && Map.map.ContinueToSelectedNode && current == Map.map.selectedNode)
 			Map.map.ContinueToSelectedNode = false;
-		}
+		
 		//Wait for user to hit step if in step through mode
 		while(Map.map.TraceThroughOn && !Map.map.StepForward && !Map.map.exiting)
 		{
@@ -128,7 +118,6 @@ public class PathfindingSequentialA
 				Map.map.StepBack = false;
 				goBack = true;
 				GoBackToStep = numSteps-2;
-				
 				Map.map.InitMap();
 				Astar();
 				return;
@@ -140,36 +129,34 @@ public class PathfindingSequentialA
 		Map.map.StepForward = false;
 	}
 
-	public int Heuristic_cost_estimate (Node goal, Node current)
+	public int HeuristicCost (Node goal, Node current)
 	{
+		int dx1 = Math.Abs((current.xIndex) - (goal.xIndex));
+		int dy1 = Math.Abs((current.yIndex) - (goal.yIndex));
+        if (dx1 > dy1)
+            return 14 * dy1 + 10 * (dx1 - dy1);
+        return 14 * dx1 + 10 * (dy1 - dx1);
+    }
 
-		int dx1 = (int)Math.Abs((current.xIndex) - (goal.xIndex));
-		int dy1 = (int)Math.Abs((current.yIndex) - (goal.yIndex));
 
-		if (dx1 > dy1)
-			return 14*dy1 + 10*(dx1-dy1);
-		else
-			return 14*dx1 + 10*(dy1-dx1);
-	}
-	
-	
-	/// <summary>
-	/// Reconstruct_path the specified start and goal.
-	/// </summary>
-	/// <param name="start">Start.</param>
-	/// <param name="goal">Goal.</param>
-	public static List<Node> Reconstruct_path (Node start, Node goal)
+    /// <summary>
+    /// ConstructPath the specified start and goal.
+    /// </summary>
+    /// <param name="start">Start.</param>
+    /// <param name="goal">Goal.</param>
+    public static List<Node> ConstructPath(Node start, Node goal)
 	{
-		List<Node> path = new List<Node> ();
-		path.Add (goal);
-		
-		Node itr = goal;
+        List<Node> path = new List<Node>
+        {
+            goal
+        };
+
+        Node itr = goal;
 		while (itr != null && itr.parent != start) {
-			path.Add (itr.parent);
+			path.Add(itr.parent);
 			itr = itr.parent;
 		}
-		path.Add (start);
-
+		path.Add(start);
 		return path;
 	}
 }

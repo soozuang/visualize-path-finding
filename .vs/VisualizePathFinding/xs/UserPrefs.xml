@@ -1,11 +1,9 @@
 ﻿<Properties StartupConfiguration="{1C2E28ED-0A98-D7C8-9799-5B1574DAEFA6}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Map.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PathfindingSequentialA.cs">
     <Files>
-      <File FileName="Assets/Scripts/CameraMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Map.cs" Line="216" Column="49" />
-      <File FileName="Assets/Scripts/PathfindingSequentialA.cs" Line="63" Column="33" />
-      <File FileName="Assets/Scripts/MinHeap.cs" Line="19" Column="16" />
-      <File FileName="Assets/Scripts/NodeVisualization.cs" Line="50" Column="10" />
+      <File FileName="Assets/Scripts/Map.cs" Line="67" Column="26" />
+      <File FileName="Assets/Scripts/PathfindingSequentialA.cs" Line="66" Column="52" />
+      <File FileName="Assets/Scripts/NodeVisualization.cs" Line="55" Column="48" />
       <File FileName="Assets/Scripts/Enums.cs" Line="43" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>

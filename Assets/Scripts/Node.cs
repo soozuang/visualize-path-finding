@@ -33,8 +33,8 @@ public class Node
 		if (node != null) 
 		{
 
-			if(this.fScore.CompareTo(node.fScore) == 0)
-				return (this.fScore - this.gScore).CompareTo(node.fScore - node.gScore);
+			if (fScore.CompareTo(node.fScore) == 0)
+				return (fScore - gScore).CompareTo(node.fScore - node.gScore);
 			return this.fScore.CompareTo(node.fScore);
 		}
 		else 
@@ -44,20 +44,17 @@ public class Node
 	}
 
 	public int CompareTo(Node node, int threadId) {
-		if (node != null) 
-		{
-			if(this.fScores[threadId].CompareTo(node.fScores[threadId]) == 0)
-				return (this.fScores[threadId] - this.gScores[threadId]).CompareTo(node.fScores[threadId] - node.gScores[threadId]);
-			return this.fScores[threadId].CompareTo(node.fScores[threadId]);
-			
-		}
-		else 
-		{
-			throw new ArgumentException("Object is not a Node");
-		}
-	}
-	
-	public Node ()
+        if (node != null)
+        {
+            if (fScores[threadId].CompareTo(node.fScores[threadId]) == 0)
+                return (fScores[threadId] - gScores[threadId]).CompareTo(node.fScores[threadId] - node.gScores[threadId]);
+            return fScores[threadId].CompareTo(node.fScores[threadId]);
+
+        }
+        throw new ArgumentException("Object is not a Node");
+    }
+
+    public Node ()
 	{
 	}
 
@@ -69,12 +66,12 @@ public class Node
 		this.yIndex = yIndex;
 	}
 	
-	public Node clone ()
+	public Node Clone()
 	{
 		return new Node (isWalkable, unityPosition, xIndex, yIndex);
 	}
 
-	public void setUnityPosition (Vector3 unityPosition)
+	public void SetUnityPosition(Vector3 unityPosition)
 	{
 		this.unityPosition = unityPosition;
 	}
@@ -84,7 +81,7 @@ public class Node
 		isWalkable = true;
 	}
 	
-	public List<Node> getNeighbors ()
+	public List<Node> GetNeighbors ()
 	{
 		List<Node> neighbors = new List<Node>();
 

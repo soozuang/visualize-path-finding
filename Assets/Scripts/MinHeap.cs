@@ -10,22 +10,26 @@ public class MinHeap
 	public MinHeap (Node root)
 	{
 		threadId = null;
-		heap = new List<Node> ();
-		heap.Add (root);
-	}
+        heap = new List<Node>
+        {
+            root
+        };
+    }
 
-	public MinHeap (Node root, int threadId)
+    public MinHeap (Node root, int threadId)
 	{
 		this.threadId = threadId;
-		heap = new List<Node> ();
-		heap.Add (root);
-	}
-	
-	/// <summary>
-	/// Gets the root.
-	/// </summary>
-	/// <returns>The root.</returns>
-	public Node GetRoot ()
+        heap = new List<Node>
+        {
+            root
+        };
+    }
+
+    /// <summary>
+    /// Gets the root.
+    /// </summary>
+    /// <returns>The root.</returns>
+    public Node GetRoot ()
 	{
 		Node root = heap [0];
 		heap [0] = heap [heap.Count - 1];

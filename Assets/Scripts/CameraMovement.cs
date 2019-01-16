@@ -4,11 +4,10 @@ using UnityEngine;
 namespace Zombies
 {
 	public class CameraMovement : MonoBehaviour{
-
-		int sensitivity = 200;
-		int scrollSensitivity = 500;
-		int scrollMaxDistance = 9999;
-		int scrollMinDistance = 5;
+        readonly int sensitivity = 200;
+        readonly int scrollSensitivity = 500;
+        readonly int scrollMaxDistance = 9999;
+        readonly int scrollMinDistance = 5;
 	
 		void Start() {
 		}
@@ -52,15 +51,15 @@ namespace Zombies
 
 			}
 
-			moveCamera(deltaX, deltaY, deltaZ);
+            MoveCamera(deltaX, deltaY, deltaZ);
 		}
 
-		private void moveCamera(float x, float y, float z){
+		private void MoveCamera(float x, float y, float z){
 			// Different coordinate standards.
 			transform.position = new Vector3(transform.position.x + x, transform.position.y + z, transform.position.z + y);
 		}
 
-		public void setStartingPosition(Vector3 position){
+		public void SetStartingPosition(Vector3 position){
 			transform.position = new Vector3(position.x, transform.position.y, position.z);
 		}
 
