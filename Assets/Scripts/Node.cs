@@ -1,97 +1,47 @@
-using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections;
 
-public class Node
-{
-	public Vector3 unityPosition;
-	public int xIndex;
-	public int yIndex;
+public class Node : IHeapItem<Node> {
+	
+	public bool walkable;
+	public Vector3 worldPosition;
+	public int gridX;
+	public int gridY;
+	public int movementPenalty;
 
-	// Used for stepping through the algorithms
-	public bool isCurrent;
+	public int gCost;
+	public int hCost;
+	public Node parent;
+	int heapIndex;
+	
+	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY, int _penalty) {
+		walkable = _walkable;
+		worldPosition = _worldPos;
+		gridX = _gridX;
+		gridY = _gridY;
+		movementPenalty = _penalty;
+	}
 
-	// Only A* variables
-	public int gScore = int.MaxValue;
-	public int fScore = int.MaxValue;
-	public bool isInOpenSet = false;
-	public Node parent = null;
-
-	// Only Bidirectional A* variables
-	public Dictionary<int, int> gScores = new Dictionary<int, int>();
-	public Dictionary<int, int> fScores = new Dictionary<int, int>();
-	public Dictionary<int, bool> isInOpenSetOfThread = new Dictionary<int, bool>();
-	public Dictionary<int, Node> parents = new Dictionary<int, Node>();
-	public int checkedByThread = 0; 
-
-	// Common variables for A* and Bidirectional A*
-	public bool isInClosedSet = false;
-	public bool isWalkable;
-
-
-	public int CompareTo(Node node) {
-		if (node != null) 
-		{
-
-			if (fScore.CompareTo(node.fScore) == 0)
-				return (fScore - gScore).CompareTo(node.fScore - node.gScore);
-			return this.fScore.CompareTo(node.fScore);
-		}
-		else 
-		{
-			throw new ArgumentException("Object is not a Node");
+	public int fCost {
+		get {
+			return gCost + hCost;
 		}
 	}
 
-	public int CompareTo(Node node, int threadId) {
-        if (node != null)
-        {
-            if (fScores[threadId].CompareTo(node.fScores[threadId]) == 0)
-                return (fScores[threadId] - gScores[threadId]).CompareTo(node.fScores[threadId] - node.gScores[threadId]);
-            return fScores[threadId].CompareTo(node.fScores[threadId]);
-
-        }
-        throw new ArgumentException("Object is not a Node");
-    }
-
-    public Node ()
-	{
+	public int HeapIndex {
+		get {
+			return heapIndex;
+		}
+		set {
+			heapIndex = value;
+		}
 	}
 
-	public Node (bool isWalkable, Vector3 unityPosition, int xIndex, int yIndex)
-	{
-		this.isWalkable = isWalkable;
-		this.unityPosition = unityPosition;
-		this.xIndex = xIndex;
-		this.yIndex = yIndex;
+	public int CompareTo(Node nodeToCompare) {
+		int compare = fCost.CompareTo(nodeToCompare.fCost);
+		if (compare == 0) {
+			compare = hCost.CompareTo(nodeToCompare.hCost);
+		}
+		return -compare;
 	}
-	
-	public Node Clone()
-	{
-		return new Node (isWalkable, unityPosition, xIndex, yIndex);
-	}
-
-	public void SetUnityPosition(Vector3 unityPosition)
-	{
-		this.unityPosition = unityPosition;
-	}
-
-	public void MakeWalkable ()
-	{
-		isWalkable = true;
-	}
-	
-	public List<Node> GetNeighbors ()
-	{
-		List<Node> neighbors = new List<Node>();
-
-		for(int x = xIndex - 1; x <= xIndex + 1; x++)
-			for(int y = yIndex - 1; y <= yIndex + 1; y++)
-				if(x >= 0 && y >= 0 && x < Map.map.size_x && y < Map.map.size_z && (x != xIndex || y != yIndex))
-					neighbors.Add(Map.map.nodes[x,y]);
-
-		return neighbors;
-	}
-
 }
-

@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PathfindingSequentialA.cs">
     <Files>
       <File FileName="Assets/Scripts/Map.cs" Line="67" Column="26" />
-      <File FileName="Assets/Scripts/PathfindingSequentialA.cs" Line="66" Column="52" />
+      <File FileName="Assets/Scripts/PathfindingSequentialA.cs" Line="111" Column="52" />
       <File FileName="Assets/Scripts/NodeVisualization.cs" Line="55" Column="48" />
       <File FileName="Assets/Scripts/Enums.cs" Line="43" Column="12" />
     </Files>
