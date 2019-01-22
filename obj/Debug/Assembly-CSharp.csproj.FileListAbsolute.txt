@@ -2,7 +2,6 @@
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Assembly-CSharp.pdb
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Boo.Lang.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/mscorlib.dll
-/Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Pathfinding.Ionic.Zip.Reduced.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/System.Core.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/System.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/System.Runtime.Serialization.dll
@@ -93,7 +92,6 @@
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Boo.Lang.Parser.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Boo.Lang.Compiler.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Unity.UNetWeaver.dll
-/Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEditor.UI.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Unity.IvyParser.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Mono.Security.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Boo.Lang.PatternMatching.dll
@@ -101,9 +99,6 @@
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Unity.Cecil.Mdb.dll
-/Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/AstarPathfindingProject.pdb
-/Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/PackageToolsEditor.pdb
-/Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/AstarPathfindingProjectEditor.pdb
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEngine.dll.mdb
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEngine.xml
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEditor.dll.mdb
@@ -248,8 +243,6 @@
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEngine.Analytics.dll.mdb
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEngine.StandardEvents.dll.mdb
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
-/Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEditor.UI.dll.mdb
-/Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/UnityEditor.UI.xml
 /Users/minhtt/Downloads/VisualizePathFinding/Temp/bin/Debug/Unity.IvyParser.dll.mdb
 /Users/minhtt/Downloads/VisualizePathFinding/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
 /Users/minhtt/Downloads/VisualizePathFinding/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache

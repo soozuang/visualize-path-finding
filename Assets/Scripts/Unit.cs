@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour {
 	const float pathUpdateMoveThreshold = .5f;
 
 	public Transform target;
-	public float speed = 20;
+	public float speed = 30;
 	public float turnSpeed = 3;
 	public float turnDst = 5;
 	public float stoppingDst = 10;
@@ -21,7 +21,6 @@ public class Unit : MonoBehaviour {
 	public void OnPathFound(Vector3[] waypoints, bool pathSuccessful) {
 		if (pathSuccessful) {
 			path = new Path(waypoints, transform.position, turnDst, stoppingDst);
-
 			StopCoroutine("FollowPath");
 			StartCoroutine("FollowPath");
 		}
@@ -32,7 +31,7 @@ public class Unit : MonoBehaviour {
 		if (Time.timeSinceLevelLoad < .3f) {
 			yield return new WaitForSeconds (.3f);
 		}
-		PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
+		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
 
 		float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
 		Vector3 targetPosOld = target.position;
@@ -40,7 +39,7 @@ public class Unit : MonoBehaviour {
 		while (true) {
 			yield return new WaitForSeconds (minPathUpdateTime);
 			if ((target.position - targetPosOld).sqrMagnitude > sqrMoveThreshold) {
-				PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
+				PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
 				targetPosOld = target.position;
 			}
 		}

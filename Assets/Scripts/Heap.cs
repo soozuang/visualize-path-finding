@@ -3,8 +3,7 @@ using System.Collections;
 using System;
 
 public class Heap<T> where T : IHeapItem<T> {
-	
-	T[] items;
+    readonly T[] items;
 	int currentItemCount;
 	
 	public Heap(int maxHeapSize) {

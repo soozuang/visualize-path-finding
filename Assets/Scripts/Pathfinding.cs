@@ -8,6 +8,7 @@ public class Pathfinding : MonoBehaviour {
 	
 	PathRequestManager requestManager;
 	Grid grid;
+    public GameObject visualizer;
 	
 	void Awake() {
 		requestManager = GetComponent<PathRequestManager>();
@@ -33,16 +34,19 @@ public class Pathfinding : MonoBehaviour {
 		
 		
 		if (startNode.walkable && targetNode.walkable) {
+
 			Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 			HashSet<Node> closedSet = new HashSet<Node>();
 			openSet.Add(startNode);
-			
-			while (openSet.Count > 0) {
+            Transform newTransform = visualizer.transform;
+            while (openSet.Count > 0) {
 				Node currentNode = openSet.RemoveFirst();
-				closedSet.Add(currentNode);
-				
-				if (currentNode == targetNode) {
-					sw.Stop();
+                Instantiate(visualizer, currentNode.worldPosition, Quaternion.identity);
+
+                closedSet.Add(currentNode);
+
+                if (currentNode == targetNode) {
+                    sw.Stop();
 					print ("Path found: " + sw.ElapsedMilliseconds + " ms");
 					pathSuccess = true;
 					break;
@@ -74,9 +78,9 @@ public class Pathfinding : MonoBehaviour {
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
 		
 	}
-		
-	
-	Vector3[] RetracePath(Node startNode, Node endNode) {
+
+
+    Vector3[] RetracePath(Node startNode, Node endNode) {
 		List<Node> path = new List<Node>();
 		Node currentNode = endNode;
 		
