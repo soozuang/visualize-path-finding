@@ -4,16 +4,13 @@ using System.Collections.Generic;
 using System;
 
 public class PathRequestManager : MonoBehaviour {
+    private Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
+    private PathRequest currentPathRequest;
+    private static PathRequestManager instance;
+    private Pathfinding pathfinding;
+    private bool isProcessingPath;
 
-	Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
-	PathRequest currentPathRequest;
-
-	static PathRequestManager instance;
-	Pathfinding pathfinding;
-
-	bool isProcessingPath;
-
-	void Awake() {
+    private void Awake() {
 		instance = this;
 		pathfinding = GetComponent<Pathfinding>();
 	}
@@ -24,7 +21,7 @@ public class PathRequestManager : MonoBehaviour {
 		instance.TryProcessNext();
 	}
 
-	void TryProcessNext() {
+    private void TryProcessNext() {
 		if (!isProcessingPath && pathRequestQueue.Count > 0) {
 			currentPathRequest = pathRequestQueue.Dequeue();
 			isProcessingPath = true;
@@ -38,7 +35,7 @@ public class PathRequestManager : MonoBehaviour {
 		TryProcessNext();
 	}
 
-	struct PathRequest {
+    private struct PathRequest {
 		public Vector3 pathStart;
 		public Vector3 pathEnd;
 		public Action<Vector3[], bool> callback;
