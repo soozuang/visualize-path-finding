@@ -6,11 +6,12 @@ public class Unit : MonoBehaviour {
 	const float minPathUpdateTime = .2f;
 	const float pathUpdateMoveThreshold = .5f;
 
+    public GameObject modal;
 	public Transform target;
 	public float speed = 30;
 	public float turnSpeed = 3;
-	public float turnDst = 5;
-	public float stoppingDst = 10;
+	public float turnDst = 1;
+	public float stoppingDst = 1;
 
 	Path path;
 
@@ -46,8 +47,8 @@ public class Unit : MonoBehaviour {
 	}
 
 	IEnumerator FollowPath() {
-
-		bool followingPath = true;
+        modal.GetComponent<Animation>().Play("forward");
+        bool followingPath = true;
 		int pathIndex = 0;
 		transform.LookAt (path.lookPoints [0]);
 
@@ -65,11 +66,11 @@ public class Unit : MonoBehaviour {
 			}
 
 			if (followingPath) {
-
 				if (pathIndex >= path.slowDownIndex && stoppingDst > 0) {
 					speedPercent = Mathf.Clamp01 (path.turnBoundaries [path.finishLineIndex].DistanceFromPoint (pos2D) / stoppingDst);
 					if (speedPercent < 0.01f) {
 						followingPath = false;
+                        modal.GetComponent<Animation>().Stop();
 					}
 				}
 

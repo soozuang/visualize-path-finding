@@ -42,7 +42,7 @@ public class Pathfinding : MonoBehaviour {
             while (openSet.Count > 0) {
 				Node currentNode = openSet.RemoveFirst();
                 Instantiate(visualizer, currentNode.worldPosition, Quaternion.identity);
-
+                yield return new WaitForSeconds(0.03f);
                 closedSet.Add(currentNode);
 
                 if (currentNode == targetNode) {
