@@ -67,8 +67,6 @@ public class Grid : MonoBehaviour {
 			}
 		}
         BlurPenaltyMap (3);
-
-
 	}
 
 	void BlurPenaltyMap(int blurSize) {
@@ -142,6 +140,7 @@ public class Grid : MonoBehaviour {
 
 
 	public Node NodeFromWorldPoint(Vector3 worldPosition) {
+        print("tick: " + worldPosition.x + " ;" + worldPosition.z);
 		float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
 		float percentY = (worldPosition.z + gridWorldSize.y/2) / gridWorldSize.y;
 		percentX = Mathf.Clamp01(percentX);
@@ -149,7 +148,8 @@ public class Grid : MonoBehaviour {
 
 		int x = Mathf.RoundToInt((gridSizeX-1) * percentX);
 		int y = Mathf.RoundToInt((gridSizeY-1) * percentY);
-		return grid[x,y];
+        print("ticktick: " + x + " ;" + y);
+        return grid[x,y];
 	}
 
 	void OnDrawGizmos() {
